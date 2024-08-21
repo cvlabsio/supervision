@@ -1,10 +1,11 @@
 ---
 comments: true
+status: new
 ---
 
 # Annotators
 
-=== "BoundingBox"
+=== "Box"
 
     ```python
     import supervision as sv
@@ -12,8 +13,8 @@ comments: true
     image = ...
     detections = sv.Detections(...)
 
-    bounding_box_annotator = sv.BoundingBoxAnnotator()
-    annotated_frame = bounding_box_annotator.annotate(
+    box_annotator = sv.BoxAnnotator()
+    annotated_frame = box_annotator.annotate(
         scene=image.copy(),
         detections=detections
     )
@@ -299,10 +300,10 @@ comments: true
     ]
 
     rich_label_annotator = sv.RichLabelAnnotator(
-        font_path=".../font.ttf",
+        font_path="<TTF_FONT_PATH>",
         text_position=sv.Position.CENTER
     )
-    annotated_frame = label_annotator.annotate(
+    annotated_frame = rich_label_annotator.annotate(
         scene=image.copy(),
         detections=detections,
         labels=labels
@@ -432,11 +433,32 @@ comments: true
 
     </div>
 
+=== "Background Color"
+
+    ```python
+    import supervision as sv
+
+    image = ...
+    detections = sv.Detections(...)
+
+    background_overlay_annotator = sv.BackgroundOverlayAnnotator()
+    annotated_frame = background_overlay_annotator.annotate(
+        scene=image.copy(),
+        detections=detections
+    )
+    ```
+
+    <div class="result" markdown>
+
+    ![background-overlay-annotator-example](https://media.roboflow.com/supervision-annotator-examples/background-color-annotator-example-purple.png)
+
+    </div>
+
 <div class="md-typeset">
-    <h2><a href="#supervision.annotators.core.BoundingBoxAnnotator">BoundingBoxAnnotator</a></h2>
+    <h2><a href="#supervision.annotators.core.BoxAnnotator">BoxAnnotator</a></h2>
 </div>
 
-:::supervision.annotators.core.BoundingBoxAnnotator
+:::supervision.annotators.core.BoxAnnotator
 
 <div class="md-typeset">
     <h2><a href="#supervision.annotators.core.RoundBoxAnnotator">RoundBoxAnnotator</a></h2>
@@ -551,6 +573,12 @@ comments: true
 </div>
 
 :::supervision.annotators.core.CropAnnotator
+
+<div class="md-typeset">
+    <h2><a href="#supervision.annotators.core.BackgroundOverlayAnnotator">BackgroundOverlayAnnotator</a></h2>
+</div>
+
+:::supervision.annotators.core.BackgroundOverlayAnnotator
 
 <div class="md-typeset">
     <h2><a href="#supervision.annotators.core.ColorLookup">ColorLookup</a></h2>
